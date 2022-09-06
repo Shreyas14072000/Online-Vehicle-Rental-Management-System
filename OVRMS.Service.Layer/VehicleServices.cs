@@ -10,5 +10,53 @@ namespace OVRMS.ServiceLayer
 {
     public class VehicleServices : InterfaceVehicleService
     {
+        public OVRMSDBContext OVRMSDBContext;
+
+        public VehicleServices(OVRMSDBContext ovrmsdbcontext)
+        {
+            this.OVRMSDBContext = ovrmsdbcontext;
+        }
+        public IList<Vehicles> VehiclesList()
+        {
+            return OVRMSDBContext.Set<Vehicles>().ToList();
+        }
+
+        public IList<Customers> CustomersList()
+        {
+            return OVRMSDBContext.Set<Customers>().ToList();
+        }
+
+        public IList<BookingDetails> BookingDetailsList()
+        {
+            return OVRMSDBContext.Set<BookingDetails>().ToList();
+        }
+
+        public IList<Payment> PaymentList()
+        {
+            return OVRMSDBContext.Set<Payment>().ToList();
+        }
+
+        void InterfaceVehicleService.UpdateBookingDetails(BookingDetails UpdateBooking)
+        {
+            OVRMSDBContext.Update<BookingDetails>(UpdateBooking);
+            OVRMSDBContext.SaveChanges();
+
+        }
+        public void DeleteBookingDetails(int BookingId)
+        {
+            BookingDetails BookingDetails = GetBookingDetails(BookingId);
+            if (BookingDetails != null)
+            {
+                OVRMSDBContext.Remove<BookingDetails>(BookingDetails);
+                OVRMSDBContext.SaveChanges();
+            }
+
+        }
+        private BookingDetails GetBookingDetails(int BookingId)
+        {
+            return OVRMSDBContext.Find<BookingDetails>(BookingId);
+
+
+        }
     }
 }
