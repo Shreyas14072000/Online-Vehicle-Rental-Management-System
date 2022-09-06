@@ -55,8 +55,31 @@ namespace OVRMS.ServiceLayer
         private BookingDetails GetBookingDetails(int BookingId)
         {
             return OVRMSDBContext.Find<BookingDetails>(BookingId);
-
+        }
+        public void RegisterNewCustomer(Customers customers)
+        {
+            OVRMSDBContext.Add<Customers>(customers);
+            OVRMSDBContext.SaveChanges();
 
         }
+        public void AddBookingRequest(BookingDetails BookingDetails)
+        {
+            OVRMSDBContext.Add<BookingDetails>(BookingDetails);
+            OVRMSDBContext.SaveChanges();
+
+        }
+        public void ApproveBooking(BookingDetails ApproveBooking)
+        {
+            OVRMSDBContext.Add<BookingDetails>(ApproveBooking);
+            OVRMSDBContext.SaveChanges();
+
+        }
+        public void MakePayment(Payment MakePayment)
+        {
+            OVRMSDBContext.Add<Payment>(MakePayment);
+            OVRMSDBContext.SaveChanges();
+
+        }
+
     }
 }

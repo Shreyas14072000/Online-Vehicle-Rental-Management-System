@@ -16,7 +16,7 @@ namespace OVRMS.ServiceLayer
 
         void RegisterNewCustomer(Customers customers);
 
-        void AddBookingRequest(BookingDetails bookingDetails);
+        void AddBookingRequest(BookingDetails BookingDetails);
 
         void UpdateBookingDetails(BookingDetails UpdateBooking);
         IList<BookingDetails> BookingDetailsList();
@@ -25,7 +25,7 @@ namespace OVRMS.ServiceLayer
 
         void DeleteBookingDetails(int BookingId);
 
-        void Payment(Payment payment);
+        void MakePayment(Payment Makepayment);
 
         IList<Payment> PaymentList();
     }
