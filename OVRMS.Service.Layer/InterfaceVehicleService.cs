@@ -18,7 +18,7 @@ namespace OVRMS.ServiceLayer
 
         void AddBookingRequest(BookingDetails BookingDetails);
 
-        void UpdateBookingDetails(BookingDetails UpdateBooking);
+        void UpdateVehicleAvailability(Vehicles UpdateVehicleAvailability);
         IList<BookingDetails> BookingDetailsList();
 
         void ApproveBooking(BookingDetails Approvebooking);

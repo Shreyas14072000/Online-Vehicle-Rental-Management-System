@@ -36,9 +36,9 @@ namespace OVRMS.ServiceLayer
             return OVRMSDBContext.Set<Payment>().ToList();
         }
 
-        void InterfaceVehicleService.UpdateBookingDetails(BookingDetails UpdateBooking)
+        void InterfaceVehicleService.UpdateVehicleAvailability(Vehicles UpdateVehicleAvailability)
         {
-            OVRMSDBContext.Update<BookingDetails>(UpdateBooking);
+            OVRMSDBContext.Update<Vehicles>(UpdateVehicleAvailability);
             OVRMSDBContext.SaveChanges();
 
         }

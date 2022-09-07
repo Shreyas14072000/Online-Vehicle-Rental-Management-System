@@ -53,7 +53,7 @@ namespace Online_Vehicle_Rental_Management_System
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
