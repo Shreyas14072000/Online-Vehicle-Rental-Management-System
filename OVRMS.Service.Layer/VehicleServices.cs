@@ -21,65 +21,31 @@ namespace OVRMS.ServiceLayer
             return OVRMSDBContext.Set<Vehicles>().ToList();
         }
 
-        public IList<Customers> CustomersList()
+        public void AddVehicles(Vehicles AddVehicles)
         {
-            return OVRMSDBContext.Set<Customers>().ToList();
-        }
+            OVRMSDBContext.Add<Vehicles>(AddVehicles);
+            OVRMSDBContext.SaveChanges();
 
-        public IList<BookingDetails> BookingDetailsList()
-        {
-            return OVRMSDBContext.Set<BookingDetails>().ToList();
         }
-
-        public IList<Payment> PaymentList()
-        {
-            return OVRMSDBContext.Set<Payment>().ToList();
-        }
-
         void InterfaceVehicleService.UpdateVehicleAvailability(Vehicles UpdateVehicleAvailability)
         {
             OVRMSDBContext.Update<Vehicles>(UpdateVehicleAvailability);
             OVRMSDBContext.SaveChanges();
 
         }
-        public void DeleteBookingDetails(int BookingId)
+        public void DeleteVehicles(int VehicleId)
         {
-            BookingDetails BookingDetails = GetBookingDetails(BookingId);
-            if (BookingDetails != null)
+            Vehicles DeleteVehicles = Vehicles(VehicleId);
+            if (DeleteVehicles != null)
             {
-                OVRMSDBContext.Remove<BookingDetails>(BookingDetails);
+                OVRMSDBContext.Remove<Vehicles>(DeleteVehicles);
                 OVRMSDBContext.SaveChanges();
             }
 
         }
-        private BookingDetails GetBookingDetails(int BookingId)
+        private Vehicles Vehicles(int VehicleId)
         {
-            return OVRMSDBContext.Find<BookingDetails>(BookingId);
+            return OVRMSDBContext.Find<Vehicles>(VehicleId);
         }
-        public void RegisterNewCustomer(Customers customers)
-        {
-            OVRMSDBContext.Add<Customers>(customers);
-            OVRMSDBContext.SaveChanges();
-
-        }
-        public void AddBookingRequest(BookingDetails BookingDetails)
-        {
-            OVRMSDBContext.Add<BookingDetails>(BookingDetails);
-            OVRMSDBContext.SaveChanges();
-
-        }
-        public void ApproveBooking(BookingDetails ApproveBooking)
-        {
-            OVRMSDBContext.Add<BookingDetails>(ApproveBooking);
-            OVRMSDBContext.SaveChanges();
-
-        }
-        public void MakePayment(Payment MakePayment)
-        {
-            OVRMSDBContext.Add<Payment>(MakePayment);
-            OVRMSDBContext.SaveChanges();
-
-        }
-
     }
 }

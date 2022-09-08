@@ -32,10 +32,13 @@ namespace Online_Vehicle_Rental_Management_System
 
             services.AddControllers();
             services.AddScoped<InterfaceVehicleService, VehicleServices>();
+            services.AddScoped<InterfaceCustomerService, CustomerServices>();
+            services.AddScoped<InterfaceBookingService, BookingServices>();
+            services.AddScoped<InterfacePaymentService, PaymentServices>();
             services.AddDbContext<OVRMSDBContext>(x => x.UseSqlServer(Configuration.GetConnectionString("ConStr")));
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Online_Vehicle_Rental_Management_System", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Online Vehicle Rental Management System", Version = "v1" });
             });
         }
 
@@ -46,7 +49,7 @@ namespace Online_Vehicle_Rental_Management_System
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Online_Vehicle_Rental_Management_System v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Online Vehicle Rental Management System"));
             }
 
             app.UseHttpsRedirection();

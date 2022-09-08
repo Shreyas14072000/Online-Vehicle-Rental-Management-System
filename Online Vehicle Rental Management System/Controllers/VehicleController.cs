@@ -6,32 +6,53 @@ using System.Threading.Tasks;
 using OVRMS.ServiceLayer;
 using OVRMS.DomainLayer.Models;
 using Microsoft.Extensions.Logging;
+using OVRMS.RepositoryLayer;
+using Microsoft.Extensions.Configuration;
+
 
 namespace Online_Vehicle_Rental_Management_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminController : ControllerBase
+    public class VehicleController : ControllerBase
     {
         private readonly InterfaceVehicleService VehicleServices;
-        private readonly ILogger<AdminController> _logger;
+        private readonly ILogger<VehicleController> _logger;
+        private readonly IConfiguration config;
 
-        public AdminController(InterfaceVehicleService VehicleServices, ILogger<AdminController> logger)
+
+        public VehicleController(InterfaceVehicleService VehicleServices, ILogger<VehicleController> logger, IConfiguration config)
         {
-            _logger = logger;
-            _logger.LogInformation("Vehicle Added");
+            _logger = (ILogger<VehicleController>)logger;
+            _logger.LogInformation("Vehicles");
             this.VehicleServices = VehicleServices;
+            this.config = config;
         }
-
-        [HttpGet(nameof(CustomersList))]
-        public ActionResult CustomersList()
+        [HttpPost(nameof(AddVehicles))]
+        public ActionResult AddVehicles(Vehicles AddVehicles)
         {
             try
             {
-                var customers = VehicleServices.CustomersList();
-                if (customers != null)
+                VehicleServices.AddVehicles(AddVehicles);
+
+                return Ok("New Vehicle Added");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Exception Occured", e.InnerException);
+            }
+            return BadRequest("Not found");
+
+        }
+        [HttpGet(nameof(VehiclesList))]
+        public ActionResult VehiclesList()
+        {
+            try
+            {
+                var vehicles = VehicleServices.VehiclesList();
+                if (vehicles != null)
                 {
-                    return Ok(customers);
+                    return Ok(vehicles);
                 }
             }
             catch (Exception e)
@@ -41,25 +62,6 @@ namespace Online_Vehicle_Rental_Management_System.Controllers
 
             return BadRequest("Not found");
         }
-        [HttpGet(nameof(BookingDetailsList))]
-        public ActionResult BookingDetailsList()
-        {
-            try
-            {
-                var BookingDetails = VehicleServices.BookingDetailsList();
-                if (BookingDetails != null)
-                {
-                    return Ok(BookingDetails);
-                }
-            }
-            catch (Exception e)
-            {
-                _logger.LogError("Exception Occured", e.InnerException);
-            }
-
-            return BadRequest("Not found");
-        }
-       
         [HttpPut(nameof(UpdateVehicleAvailability))]
         public ActionResult UpdateVehicleAvailability(Vehicles UpdateVehicleAvailability)
         {
@@ -75,6 +77,22 @@ namespace Online_Vehicle_Rental_Management_System.Controllers
             }
             return BadRequest("Not found");
 
+        }
+        [HttpDelete(nameof(DeleteVehicles))]
+        public ActionResult DeleteVehicles(int VehicleId)
+        {
+            try
+            {
+                VehicleServices.DeleteVehicles(VehicleId);
+
+                return Ok("Vehicle Deleted");
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Exception Occured", e.InnerException);
+            }
+            return BadRequest("Not found");
         }
     }
 }

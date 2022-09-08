@@ -6,38 +6,34 @@ using System.Threading.Tasks;
 using OVRMS.ServiceLayer;
 using OVRMS.DomainLayer.Models;
 using Microsoft.Extensions.Logging;
-using OVRMS.RepositoryLayer;
 using Microsoft.Extensions.Configuration;
-
 
 namespace Online_Vehicle_Rental_Management_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class PaymentController : ControllerBase
     {
-
         
-        private readonly InterfaceCustomerService CustomerServices;
-        private readonly ILogger<CustomersController> _logger;
+        private readonly InterfacePaymentService PaymentServices;
+        private readonly ILogger<PaymentController> _logger;
         private readonly IConfiguration config;
 
-
-        public CustomersController(ILogger<CustomersController> logger, IConfiguration config, InterfaceCustomerService CustomerServices)
+        public PaymentController(ILogger<PaymentController> logger, IConfiguration config, InterfacePaymentService PaymentServices)
         {
             _logger = logger;
-            _logger.LogInformation("Customer");
-            this.CustomerServices = CustomerServices;
+            _logger.LogInformation("Payment");
+            this.PaymentServices = PaymentServices;
             this.config = config;
         }
-        [HttpPost(nameof(RegisterNewCustomer))]
-        public ActionResult RegisterNewCustomer(Customers customers)
+        [HttpPost(nameof(MakePayment))]
+        public ActionResult MakePayment(Payment MakePayment)
         {
             try
             {
-                CustomerServices.RegisterNewCustomer(customers);
+                PaymentServices.MakePayment(MakePayment);
 
-                return Ok("New Customer Registered");
+                return Ok("Payment Processed");
             }
             catch (Exception e)
             {
@@ -46,15 +42,15 @@ namespace Online_Vehicle_Rental_Management_System.Controllers
             return BadRequest("Not found");
 
         }
-        [HttpGet(nameof(CustomersList))]
-        public ActionResult CustomersList()
+        [HttpGet(nameof(PaymentList))]
+        public ActionResult PaymentList()
         {
             try
             {
-                var customers = CustomerServices.CustomersList();
-                if (customers != null)
+                var Payment = PaymentServices.PaymentList();
+                if (Payment != null)
                 {
-                    return Ok(customers);
+                    return Ok(Payment);
                 }
             }
             catch (Exception e)
@@ -64,5 +60,6 @@ namespace Online_Vehicle_Rental_Management_System.Controllers
 
             return BadRequest("Not found");
         }
+        
     }
 }

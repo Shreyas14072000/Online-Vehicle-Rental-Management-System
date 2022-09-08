@@ -11,22 +11,9 @@ namespace OVRMS.ServiceLayer
     public interface InterfaceVehicleService
     {
         IList<Vehicles> VehiclesList();
-
-        IList<Customers> CustomersList();
-
-        void RegisterNewCustomer(Customers customers);
-
-        void AddBookingRequest(BookingDetails BookingDetails);
-
         void UpdateVehicleAvailability(Vehicles UpdateVehicleAvailability);
-        IList<BookingDetails> BookingDetailsList();
 
-        void ApproveBooking(BookingDetails Approvebooking);
-
-        void DeleteBookingDetails(int BookingId);
-
-        void MakePayment(Payment Makepayment);
-
-        IList<Payment> PaymentList();
+        void AddVehicles(Vehicles AddVehicles);
+        void DeleteVehicles(int VehicleId);
     }
 }
