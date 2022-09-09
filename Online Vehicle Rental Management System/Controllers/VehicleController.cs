@@ -44,6 +44,7 @@ namespace Online_Vehicle_Rental_Management_System.Controllers
             return BadRequest("Not found");
 
         }
+        
         [HttpGet(nameof(VehiclesList))]
         public ActionResult VehiclesList()
         {
