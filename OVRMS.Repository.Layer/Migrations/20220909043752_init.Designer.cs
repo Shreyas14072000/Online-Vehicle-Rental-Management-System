@@ -10,7 +10,7 @@ using OVRMS.RepositoryLayer;
 namespace OVRMS.RepositoryLayer.Migrations
 {
     [DbContext(typeof(OVRMSDBContext))]
-    [Migration("20220906084542_init")]
+    [Migration("20220909043752_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,25 @@ namespace OVRMS.RepositoryLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("OVRMS.DomainLayer.Models.Admin", b =>
+                {
+                    b.Property<string>("AdminName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("PhoneNo")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("AdminName");
+
+                    b.ToTable("Admin");
+                });
 
             modelBuilder.Entity("OVRMS.DomainLayer.Models.BookingDetails", b =>
                 {

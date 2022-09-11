@@ -21,5 +21,6 @@ namespace OVRMS.RepositoryLayer
         DbSet<Vehicles> Vehicles { get; set; }
 
         DbSet<Payment> Payment { get; set; }
+        DbSet<Admin> Admin { get; set; }
     }
 }

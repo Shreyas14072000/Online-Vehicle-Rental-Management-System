@@ -7,20 +7,14 @@ using System.Threading.Tasks;
 
 namespace OVRMS.DomainLayer.Models
 {
-    public class Customers
+    public class Admin
     {
-        [Key]
+       [Key]
         [Required]
-        public int CustomerId { get; set; }
-        [Required]
-
-        public string Username { get; set; }
+        public string AdminName { get; set; }
         [Required]
         public string Password { get; set; }
-        
-        public long MobileNumber { get; set; }
-
-        public string Address { get; set; }
+        public long PhoneNo { get; set; }
 
         public string Email { get; set; }
     }

@@ -10,12 +10,17 @@ namespace OVRMS.DomainLayer.Models
     public class BookingDetails
     {
         [Key]
+        [Required]
         public int BookingId { get; set; }
+        [Required]
         public int VehicleId { get; set; }
+        [Required]
         public int CustomerId { get; set; }
         public DateTime BookedFrom { get; set; }
 
         public DateTime BookedTo { get; set; }
+        [Range(1, int.MaxValue)]
+
 
         public int Amount { get; set; }
 

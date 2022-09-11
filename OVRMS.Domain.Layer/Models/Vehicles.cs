@@ -11,12 +11,16 @@ namespace OVRMS.DomainLayer.Models
     {
         [Key]
         public int VehicleId { get; set; }
-
+        [Required]
         public string VehicleName { get; set; }
+        [Required]
         public string VehicleCompany { get; set; }
+        [Required]
         public string VehicleType { get; set; }
+        [Range(1,int.MaxValue)]
 
         public int AvgRatePerDay { get; set; }
+        [Range(1, int.MaxValue)]
 
         public int Rating { get; set; }
 

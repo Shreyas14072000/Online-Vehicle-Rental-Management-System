@@ -31,6 +31,7 @@ namespace Online_Vehicle_Rental_Management_System
         {
 
             services.AddControllers();
+            services.AddScoped<InterfaceAdminService, AdminServices>();
             services.AddScoped<InterfaceVehicleService, VehicleServices>();
             services.AddScoped<InterfaceCustomerService, CustomerServices>();
             services.AddScoped<InterfaceBookingService, BookingServices>();

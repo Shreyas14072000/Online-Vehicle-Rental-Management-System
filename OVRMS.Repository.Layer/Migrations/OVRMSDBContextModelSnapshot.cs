@@ -19,6 +19,25 @@ namespace OVRMS.RepositoryLayer.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("OVRMS.DomainLayer.Models.Admin", b =>
+                {
+                    b.Property<string>("AdminName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("PhoneNo")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("AdminName");
+
+                    b.ToTable("Admin");
+                });
+
             modelBuilder.Entity("OVRMS.DomainLayer.Models.BookingDetails", b =>
                 {
                     b.Property<int>("BookingId")

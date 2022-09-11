@@ -35,6 +35,7 @@ namespace Online_Vehicle_Rental_Management_System.Controllers
         {
             try
             {
+                
                 CustomerServices.RegisterNewCustomer(customers);
 
                 return Ok("New Customer Registered");

@@ -10,9 +10,12 @@ namespace OVRMS.DomainLayer.Models
     public class Payment
     {
         [Key]
+        
         public int PaymentId { get; set; }
+        [Required]
         public int BookingId { get; set; }
         public string PaymentMethod { get; set; }
+        [Range(1, int.MaxValue)]
         public int Amount { get; set; }
 
         

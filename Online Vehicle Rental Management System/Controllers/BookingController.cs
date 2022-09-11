@@ -35,6 +35,7 @@ namespace Online_Vehicle_Rental_Management_System.Controllers
         {
             try
             {
+               
                 BookingServices.AddBookingRequest(BookingDetails);
 
                 return Ok("Booking Requested");
